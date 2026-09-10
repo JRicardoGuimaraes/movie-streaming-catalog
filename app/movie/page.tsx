@@ -25,6 +25,7 @@
           </div>
 
           {/* Conteúdo Principal */}
+          
           <div className="px-8 -mt-32 relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {/* Poster */}
