@@ -1,8 +1,6 @@
     const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY || '';
     const BASE_URL = process.env.NEXT_PUBLIC_TMDB_BASE_URL || 'https://api.themoviedb.org/3';
 
-    // --- FUNÇÕES DA HOME ---
-
     export async function getTrendingMovies(page = 1) {
       const res = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=pt-BR&page=${page}`);
       const data = await res.json();
@@ -19,9 +17,8 @@
     export async function getMoviesByProvider(providerId: string, page = 1) {
     const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&region=BR&with_watch_provide
     rs=${providerId}&page=${page}`);
-      const data = await res.//json();
-      const dataJson = await res.json();
-      return { results: dataJson.results || [], total_pages: dataJson.total_pages || 1 };
+      const data = await res.json();
+      return { results: data.results || [], total_pages: data.total_pages || 1 };
     }
 
     export async function getGenres() {
@@ -37,10 +34,8 @@
       return { results: data.results || [], total_pages: data.total_pages || 1 };
     }
 
-    // --- FUNÇÕES DA PÁGINA DE DETALHES ---
-
     export async function getMovieDetails(movieId: string) {
-      const res = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=pt-BR`);
+      const res = await fetch(`${BASE_URL}/movie/${movieId}?api_//key=${API_KEY}&language=pt-BR`);
       if (!res.ok) throw new Error('Erro ao buscar detalhes do filme');
       return res.json();
     }
@@ -48,6 +43,5 @@
     export async function getMovieWatchProviders(movieId: string) {
       const res = await fetch(`${BASE_URL}/movie/${movieId}/watch/providers?api_key=${API_KEY}`);
       const data = await res.json();
-      // Retorna apenas a lista de provedores do Brasil (BR)
       return data.results?.BR?.flat() || [];
     }
