@@ -8,8 +8,7 @@
     }
 
     export async function searchMovies(query: string) {
-    const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${encodeURIComponent(que
-    ry)}`);
+    const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${encodeURIComponent(query)}`);
       const data = await res.json();
       return data.results || [];
     }
